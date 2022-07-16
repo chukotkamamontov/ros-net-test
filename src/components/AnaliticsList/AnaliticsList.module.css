@@ -1,0 +1,9 @@
+.analitics-list {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #000;
+    background: darkcyan;
+    padding: 10px;
+    opacity: 0.7;
+}
