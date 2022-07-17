@@ -18,6 +18,6 @@ export function msConverter(duration : number): string {
   let sec: string | number;
   (minutes < 10) ? min = `0${parseInt(String(minutes))}`: min = String(minutes);
   (seconds < 10) ? sec = `0${parseInt(String(seconds))}`: sec = parseInt(String(seconds));
-  
+  // console.log(min + ":" + sec + ":" + ms)
   return min + ":" + sec + ":" + ms;
 };

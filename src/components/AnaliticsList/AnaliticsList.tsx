@@ -20,6 +20,19 @@ const AnaliticsList: FC<AnaliticsListPropsType> = ({changeTimestamp}) => {
     if(error) return <div>Something went wrong</div>
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        // console.log(data);
+        
+        // const timestamp = {
+        //     timestampData:{
+        //         duration: data,
+        //         zone: {
+        //             height: number,
+        //             left: number,
+        //             top: number,
+        //             width:number
+        //         }
+        //     }
+        // }
         changeTimestamp(Number(e.target.value));
     }
 

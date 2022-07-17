@@ -11,6 +11,7 @@ export const fetchTimestamps = (): any => {
             dispatch({ type: FETCH_PLAYER_DATA })
             const response = await axios.get(videoData)
             // console.log(response.data)
+            // console.log(response.data)
             dispatch({ type: FETCH_PLAYER_DATA_SUCCESS, payload: response.data })
         }
         catch(e) {
@@ -21,6 +22,7 @@ export const fetchTimestamps = (): any => {
 
 export const addTimestamp = (data: any): any => {
     return (dispatch: Dispatch<PlayerActionsTypes>) => {
+        // console.log(data)
         dispatch({ type: ADD_TIMESTAMP, payload: data })
     }
 }

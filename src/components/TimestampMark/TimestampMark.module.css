@@ -1,0 +1,15 @@
+.timestamp {
+    animation: eye 10s ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards
+}
+
+@keyframes eye {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
