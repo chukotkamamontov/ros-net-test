@@ -13,14 +13,13 @@ type AnaliticsListPropsType = {
 
 const AnaliticsList: FC<AnaliticsListPropsType> = ({changeTimestamp}) => {
     const { data, error, loading } = useSelector((state: RootState) => state.player)
-    console.log(sortById(data));
-
+    
+    const analiticsData = sortById(data);
     
     if(loading) return <div>loading...</div>
     if(error) return <div>Something went wrong</div>
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        // console.log(e.target.value);
         changeTimestamp(Number(e.target.value));
     }
 
@@ -28,7 +27,7 @@ const AnaliticsList: FC<AnaliticsListPropsType> = ({changeTimestamp}) => {
         <div className={style["analitics-list"]}>
             <span>Timestamps: </span>
             <select onChange={handleSelectChange}>
-                {data.map(item => <option key={item.id} value={item.timestamp}>{msConverter(item.timestamp)}</option>)}
+                {analiticsData.map(item => <option key={item.id} value={item.timestamp}>{msConverter(item.timestamp)}</option>)}
             </select>
         </div>
     )

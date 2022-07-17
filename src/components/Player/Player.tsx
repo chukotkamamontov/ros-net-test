@@ -30,12 +30,13 @@ const Player: FC = () => {
       }
     }, [timestamp])
 
-    const play = () => {
+    const handlePlay = () => {
       // console.log("play");
     }
 
-    const pause = (e: React.MouseEvent<HTMLVideoElement>) => {
+    const handleClick = (e: React.MouseEvent<HTMLVideoElement>) => {
       // console.log("pause")
+      e.stopPropagation()
       console.log(e.nativeEvent.clientX )
       if(!videoRef.current?.paused){
         alert(`${e.nativeEvent.clientX}, ${e.nativeEvent.clientY}`)
@@ -58,10 +59,15 @@ const Player: FC = () => {
       // console.log("update")
       if(videoRef.current) setCurrentTime(videoRef.current.currentTime)
     }
+
+    const HandlePause = (e: React.MouseEvent<HTMLVideoElement>) => {
+      console.log(e)
+      console.log("pause")
+    }
     
     return (
           <div className={styles["player-wrapper"]}>
-              <video onTimeUpdate={handleTimeUpdate} onClick={pause} onPlay={play} ref={videoRef} className={styles.player} controls/>
+              <video onTimeUpdate={handleTimeUpdate} onPause={HandlePause} onClick={handleClick} onPlay={handlePlay} ref={videoRef} className={styles.player} controls/>
               <AnaliticsList changeTimestamp={handleChangeTimestamp} />
           </div>
       )
