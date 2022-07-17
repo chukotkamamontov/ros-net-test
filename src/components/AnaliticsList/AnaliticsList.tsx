@@ -4,7 +4,7 @@ import { sortById } from "../../helpers/array-sort";
 import { msConverter } from "../../helpers/ms-converter";
 import { RootState } from "../../redux/reducers/reducers"
 import AnaliticsItem from "../AnaliticsItem/AnaliticsItem";
-import ClickMark from "../ClickMark/ClickMark";
+import TimestampMark from "../TimestampMark/TimestampMark";
 import style from "./AnaliticsList.module.css"
  
 type AnaliticsListPropsType = {

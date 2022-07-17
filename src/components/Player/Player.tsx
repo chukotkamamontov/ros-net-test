@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, FC, useCallback } from "react"
 import { useDispatch } from "react-redux"
 import AnaliticsList from "../AnaliticsList/AnaliticsList"
+import TimestampMark from "../TimestampMark/TimestampMark"
 import styles from "./Player.module.css"
 import  { addTimestamp, fetchTimestamps }  from "../../redux/actions/playerAction"
 import { v4 as uuidv4 }  from "uuid"
@@ -51,7 +52,8 @@ const Player: FC = () => {
     }
 
     const handleChangeTimestamp = useCallback((timestamp: number) => {
-      // console.log("changeTimestamp", timestamp / 1000)
+      console.log("changeTimestamp", timestamp / 1000)
+
       setTimestamp(timestamp / 1000);
     }, [])
 
@@ -60,15 +62,28 @@ const Player: FC = () => {
       if(videoRef.current) setCurrentTime(videoRef.current.currentTime)
     }
 
-    const HandlePause = (e: React.MouseEvent<HTMLVideoElement>) => {
-      console.log(e)
-      console.log("pause")
+    // const HandlePause = (e: React.MouseEvent<HTMLVideoElement>) => {
+    //   console.log(e)
+    //   console.log("pause")
+    // }
+
+    const timestampData = {
+        duration: 123,
+        zone: {
+            height: 50,
+            left: 50,
+            top: 50,
+            width :50
+        }
     }
+    
     
     return (
           <div className={styles["player-wrapper"]}>
-              <video onTimeUpdate={handleTimeUpdate} onPause={HandlePause} onClick={handleClick} onPlay={handlePlay} ref={videoRef} className={styles.player} controls/>
+              <video onTimeUpdate={handleTimeUpdate} onClick={handleClick} onPlay={handlePlay} ref={videoRef} className={styles.player} controls/>
               <AnaliticsList changeTimestamp={handleChangeTimestamp} />
+              {/* <TimestampMark data={props} /> */}
+              <TimestampMark timestampData={timestampData} />
           </div>
       )
 }
