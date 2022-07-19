@@ -1,49 +1,36 @@
-import React,{ FC } from "react"
-import { useSelector } from "react-redux"
-import { sortById } from "../../helpers/array-sort";
-import { msConverter } from "../../helpers/ms-converter";
-import { RootState } from "../../redux/reducers/reducers"
-import AnaliticsItem from "../AnaliticsItem/AnaliticsItem";
-import TimestampMark from "../TimestampMark/TimestampMark";
+import { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTimestamps } from "../../redux/actions/playerAction";
+import { RootState } from "../../redux/reducers/reducers";
+import { msConverter } from "../../helpers/msConverter";
+import { sortByTimestamp } from "../../helpers/sortByTimestamp";
 import style from "./AnaliticsList.module.css"
- 
-type AnaliticsListPropsType = {
-    changeTimestamp: (timestamp: number) => void
+
+interface IAnaliticsListProps {
+    changeCurrentTime: (timestamp: number) => void
 }
 
-const AnaliticsList: FC<AnaliticsListPropsType> = ({changeTimestamp}) => {
+const AnaliticsList: FC<IAnaliticsListProps> = ({changeCurrentTime}) => {
     const { data, error, loading } = useSelector((state: RootState) => state.player)
-    
-    const analiticsData = sortById(data);
-    
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchTimestamps())
+    }, [])
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        changeCurrentTime(Number(e.target.value))
+    }
+
     if(loading) return <div>loading...</div>
     if(error) return <div>Something went wrong</div>
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        // console.log(data);
-        
-        // const timestamp = {
-        //     timestampData:{
-        //         duration: data,
-        //         zone: {
-        //             height: number,
-        //             left: number,
-        //             top: number,
-        //             width:number
-        //         }
-        //     }
-        // }
-        changeTimestamp(Number(e.target.value));
-    }
-
     return (
-        <div className={style["analitics-list"]}>
-            <span>Timestamps: </span>
-            <select onChange={handleSelectChange}>
-                {analiticsData.map(item => <option key={item.id} value={item.timestamp}>{msConverter(item.timestamp)}</option>)}
-            </select>
-        </div>
+        <select className={style.list} onChange={handleChange}>
+            {sortByTimestamp(data).map(item => <option key={item.id} value={item.timestamp}>{msConverter(item.timestamp)}</option>)}
+        </select>
     )
 }
 
-export default React.memo(AnaliticsList)
+export default AnaliticsList
+

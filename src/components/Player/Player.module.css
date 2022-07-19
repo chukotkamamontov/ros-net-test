@@ -2,22 +2,10 @@
     width: 100vw;
     height: 100vh;
     position: relative;
-    display: flex;
-    justify-content: space-around;
-    /* border: 100px solid rgb(228, 129, 68); */
-    /* padding: 20px;
-    border: 2px solid darkcyan; */
-    /* background-color: aquamarine; */
 }
 
-.player-overlay {
-    width: 100px;
-    height: 100px;
-    background: rgb(5, 34, 60);
-    opacity: 1;
+.player {
+    height: 400px;
+    width: 100vw;
+    height: 100vh;
 }
-
-/* .player {
-    padding: 20px;
-    background-color: tomato;
-} */

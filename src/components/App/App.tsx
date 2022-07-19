@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Player from '../Player/Player';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Player />
     </div>
   );

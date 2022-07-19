@@ -1,9 +1,10 @@
-.analitics-list {
+.list {
     position: absolute;
     right: 0;
     top: 0;
-    color: #000;
+    color: #fff;
     background: darkcyan;
     padding: 10px;
-    opacity: 0.7;
+    opacity: 0.8;
+    font-size: large;
 }
