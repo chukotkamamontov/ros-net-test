@@ -26,7 +26,7 @@ const Player = () => {
         }
         setTimeout(() => {
             ref.current?.removeChild(mark)
-        }, duration);
+        }, 3000);
     }
 
     const changeCurrentTime = (timestamp: number) => {
