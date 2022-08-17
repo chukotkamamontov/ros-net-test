@@ -5,6 +5,7 @@ function App() {
   return (
     <div className={styles.app}>
       <Player />
+      <div>test changes</div>
     </div>
   );
 }
